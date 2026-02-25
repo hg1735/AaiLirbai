@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aai Lirbai — Tours & Travel </title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --dark-gold: #C8840E;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card-bg: #181818;
+    --white: #FFFFFF;
+    --off-white: #F2EDE6;
+    --text-muted: #9A9A8A;
+    --red: #E63329;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,166,35,0.15);
+    transition: padding 0.3s;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+  .logo span { color: var(--white); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--dark-gold) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(245,166,35,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 10% 90%, rgba(230,51,41,0.06) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1400px; margin: 0 auto;
+    padding: 120px 60px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-left {}
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,166,35,0.1);
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 7vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  h1 .accent { color: var(--gold); display: block; }
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 440px;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-buttons {
+    display: flex; gap: 16px; margin-top: 40px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 15px 36px;
+    border: none; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--dark-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245,166,35,0.35);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 15px 36px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.95rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: border-color 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 56px;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* BOOKING FORM */
+  .hero-right {
+    animation: fadeIn 0.8s 0.3s ease both;
+  }
+  .booking-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    overflow: visible;
+  }
+  .booking-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+  }
+  .booking-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .booking-subtitle {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .trip-tabs {
+    display: flex; gap: 0; margin-bottom: 28px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px; padding: 4px;
+  }
+  .tab-btn {
+    flex: 1; padding: 10px;
+    border: none; background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.83rem; font-weight: 600;
+    cursor: pointer; border-radius: 6px;
+    text-transform: uppercase; letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.93rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: rgba(255,255,255,0.25); }
+  select.form-input {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"%3e%3cpolyline points="6 9 12 15 18 9"%3e%3c/polyline%3e%3c/svg%3e');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 20px;
+    padding-right: 36px;
+  }
+  select.form-input option {
+    background: var(--card-bg);
+    color: var(--white);
+    padding: 8px 12px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-book {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+    color: var(--black);
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(245,166,35,0.4);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--gold);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--black);
+    padding: 0 40px;
+  }
+  .ticker-item .dot { color: rgba(0,0,0,0.4); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION COMMON */
+  section { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    letter-spacing: 2px;
+    line-height: 1.05;
+  }
+  .section-title .accent { color: var(--gold); }
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-top: 16px;
+    font-weight: 300;
+  }
+
+  /* SERVICES */
+  .services-section { background: var(--dark); padding: 100px 0; }
+  .services-inner { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .service-card:hover {
+    border-color: rgba(245,166,35,0.4);
+    transform: translateY(-6px);
+  }
+  .service-card:hover .service-icon { background: var(--gold); }
+  .service-card:hover .service-icon svg { stroke: var(--black); }
+  .service-icon {
+    width: 56px; height: 56px;
+    background: rgba(245,166,35,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    transition: background 0.3s;
+  }
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--gold); transition: stroke 0.3s; fill: none; stroke-width: 2; }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .service-card .price-tag {
+    margin-top: 28px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  /* FLEET */
+  .fleet-section { padding: 100px 60px; }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 60px;
+  }
+  .fleet-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .fleet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+  .fleet-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    background: linear-gradient(135deg, rgba(245,166,35,0.05), rgba(245,166,35,0.15));
+    position: relative;
+    overflow: hidden;
+  }
+  .fleet-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(245,166,35,0.2), transparent 60%);
+  }
+  .fleet-body { padding: 28px; }
+  .fleet-category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .fleet-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .fleet-features {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .fleet-feat {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .fleet-feat::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .fleet-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .fleet-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); }
+  .fleet-price span { font-size: 0.85rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .btn-fleet {
+    background: rgba(245,166,35,0.1);
+    color: var(--gold);
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-fleet:hover { background: var(--gold); color: var(--black); }
+
+  /* WHY US */
+  .why-section {
+    background: var(--dark);
+    padding: 100px 0;
+  }
+  .why-inner { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .why-visual {
+    position: relative;
+  }
+  .why-big-stat {
+    background: var(--card-bg);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 20px;
+    padding: 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-big-stat::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.12), transparent 60%);
+  }
+  .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: var(--gold);
+    line-height: 1;
+    position: relative;
+  }
+  .big-label {
+    font-size: 1.1rem;
+    color: var(--off-white);
+    font-weight: 500;
+    position: relative;
+  }
+  .why-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold);
+    color: var(--black);
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .why-badge small { font-size: 0.7rem; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .why-points { display: flex; flex-direction: column; gap: 28px; }
+  .why-point { display: flex; gap: 20px; align-items: flex-start; }
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: rgba(245,166,35,0.2);
+    line-height: 1;
+    min-width: 40px;
+  }
+  .why-text h4 {
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .why-text p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-section { padding: 100px 60px; }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(245,166,35,0.3); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .testimonial-text {
+    font-size: 0.93rem;
+    line-height: 1.8;
+    color: var(--off-white);
+    font-style: italic;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem; color: var(--black);
+  }
+  .author-name { font-weight: 700; font-size: 0.9rem; }
+  .author-route { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--dark-gold), var(--gold));
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(0,0,0,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+  }
+  .cta-banner h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    letter-spacing: 3px;
+    color: var(--black);
+    position: relative;
+  }
+  .cta-banner p {
+    font-size: 1.1rem;
+    color: rgba(0,0,0,0.65);
+    max-width: 500px;
+    margin: 16px auto 36px;
+    position: relative;
+    font-weight: 300;
+  }
+  .cta-buttons {
+    display: flex; gap: 16px; justify-content: center;
+    position: relative;
+  }
+  .btn-cta-dark {
+    background: var(--black);
+    color: var(--gold);
+    padding: 16px 40px;
+    border: none; border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 2px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-cta-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .btn-cta-outline {
+    background: transparent;
+    color: var(--black);
+    padding: 16px 40px;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-cta-outline:hover { border-color: rgba(0,0,0,0.7); }
+
+  /* FOOTER */
+  footer {
+    background: #060606;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 60px;
+  }
+  .footer-grid {
+    max-width: 1400px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .logo { font-size: 2.2rem; display: block; margin-bottom: 16px; }
+  .footer-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; max-width: 300px; }
+  .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .social-btn:hover { border-color: var(--gold); background: rgba(245,166,35,0.1); }
+  .footer-col h5 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1400px; margin: 0 auto;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.83rem; color: var(--text-muted); }
+  .footer-bottom .gold { color: var(--gold); }
+
+  /* PHONE BADGE */
+  .phone-float {
+    position: fixed;
+    bottom: 36px; right: 36px;
+    z-index: 998;
+    display: flex; align-items: center; gap: 14px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 14px 22px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 30px rgba(245,166,35,0.4);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    animation: bounce 3s ease infinite;
+  }
+  @keyframes bounce {
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-6px); }
+  }
+  .phone-float .icon { font-size: 1.2rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    nav { padding: 16px 30px; }
+    nav ul { gap: 20px; }
+    .hero-content { padding: 100px 30px 60px; gap: 40px; }
+    section { padding: 80px 30px; }
+    .services-inner, .why-inner, .footer-grid { padding-left: 30px; padding-right: 30px; }
+    .cta-banner { padding: 60px 30px; }
+    footer { padding: 40px 30px; }
+    .fleet-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hero-content { grid-template-columns: 1fr; }
+    .fleet-grid, .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Aai<span>Lirbai</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">🌟 India's Most Trusted Rental</div>
+      <p><h1 style="float: left;">Ride in <span class="accent">Style &<br>Comfort</span></h1> <img src="AL-icon.jpg" alt="Italian Trulli" width="45%"  style="float: right;padding-right: 5%;">
+      </p>
+      <br style="clear:both" />
+      <p class="hero-sub">Premium car rental services for outstation trips, airport transfers, and corporate travel. Available 24/7 across India.</p>
+      <div class="hero-buttons">
+        <a href="#booking" class="btn-primary">Book Your Ride</a>
+        <a href="tel:+91 92654 19600" class="btn-secondary">📞 Call Now</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">1K+</div>
+          <div class="stat-label">Happy Riders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Cities Covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Years Serving</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right" id="booking">
+      <div class="booking-card">
+        <div class="booking-title">Book Your Car</div>
+        <div class="booking-subtitle">Get instant confirmation — no hidden charges</div>
+        <div class="trip-tabs">
+          <button class="tab-btn active" onclick="setTab(this)">One Way</button>
+          <button class="tab-btn" onclick="setTab(this)">Round Trip</button>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Rahul Sharma">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" placeholder="e.g. 0123456789">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">From (Pickup City)</label>
+          <input type="text" class="form-input" placeholder="e.g. Mumbai, Delhi, Jaipur">
+        </div>
+        <div class="form-group">
+          <label class="form-label">To (Destination City)</label>
+          <input type="text" class="form-input" placeholder="e.g. Pune, Agra, Udaipur">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pickup Date</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pickup Time</label>
+            <input type="time" class="form-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Car Type</label>
+          <select class="form-input" style="cursor:pointer;">
+            <option value="" disabled selected>Select vehicle </option>
+            <option>Swift Dzire </option>
+            <option>Ertiga </option>
+            <option>Innova </option>
+            <option>Innova Crysta </option>
+            <option>Kia </option>
+            <option>Tempo Traveller (12–17 Seater)</option>
+          </select>
+        </div>
+        <button class="btn-book" onclick="handleBook()">Submit Query</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">✦ ONE WAY TRIPS</span>
+    <span class="ticker-item">✦ ROUND TRIPS</span>
+    <span class="ticker-item">✦ AIRPORT TRANSFERS</span>
+    <span class="ticker-item">✦ CORPORATE TRAVEL</span>
+    <span class="ticker-item">✦ WEDDING CAR RENTAL</span>
+    <span class="ticker-item">✦ HILL STATION TOURS</span>
+    <span class="ticker-item">✦ RAJASTHAN TOURS</span>
+    <span class="ticker-item">✦ GOA TRIPS</span>
+    <span class="ticker-item">✦ ONE WAY TRIPS</span>
+    <span class="ticker-item">✦ ROUND TRIPS</span>
+    <span class="ticker-item">✦ AIRPORT TRANSFERS</span>
+    <span class="ticker-item">✦ CORPORATE TRAVEL</span>
+    <span class="ticker-item">✦ WEDDING CAR RENTAL</span>
+    <span class="ticker-item">✦ HILL STATION TOURS</span>
+    <span class="ticker-item">✦ RAJASTHAN TOURS</span>
+    <span class="ticker-item">✦ GOA TRIPS</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services-section" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">Our <span class="accent">Services</span></h2>
+       </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+        </div>
+        <div class="service-name">Outstation Trips</div>
+        <div class="service-desc">One-way and round-trip cab services between cities. Experienced drivers familiar with all major routes across India.</div>
+        <div class="price-tag">From ₹12/km</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="service-name">Airport Transfers</div>
+        <div class="service-desc">Punctual airport pickups and drops.</div>
+        <div class="price-tag">Flat Rates Available</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="service-name">Corporate Travel</div>
+        <div class="service-desc">Dedicated car and driver packages for businesses.</div>
+        <div class="price-tag">Custom Packages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="service-name">Wedding & Events</div>
+        <div class="service-desc">Make your special day even more memorable. Decorated cars, coordinated convoys, and impeccable service.</div>
+        <div class="price-tag">Special Rates</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="service-name">Tour Packages</div>
+        <div class="service-desc">Curated multi-day tours to Rajasthan, Goa, Himachal, Kerala, and more.</div>
+        <div class="price-tag">Explore Tours</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="section-label">Travel in Comfort</div>
+  <h2 class="section-title">Our <span class="accent">Premium Fleet</span></h2>
+  <p class="section-sub">Meticulously maintained vehicles serviced every 5,000 km. Every car comes with AC, clean interiors, and a professional driver.</p>
+  <div class="fleet-grid">
+    <div class="fleet-card">
+      <div class="fleet-img">🚗</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Economy Sedan</div>
+        <div class="fleet-name">Swift Dzire / Etios</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">4 Seats</span>
+          <span class="fleet-feat">AC</span>
+          <span class="fleet-feat">Music System</span>
+          <span class="fleet-feat">GPS</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹12 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🚙</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Premium SUV</div>
+        <div class="fleet-name">Toyota Innova Crysta</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">7 Seats</span>
+          <span class="fleet-feat">AC</span>
+          <span class="fleet-feat">Charging Ports</span>
+          <span class="fleet-feat">GPS</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹18 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🏎️</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Luxury Class</div>
+        <div class="fleet-name">Mercedes E-Class</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">4 Seats</span>
+          <span class="fleet-feat">Climate Control</span>
+          <span class="fleet-feat">Leather Seats</span>
+          <span class="fleet-feat">Chauffeur</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹45 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🚐</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Group Travel</div>
+        <div class="fleet-name">Tempo Traveller</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">12–17 Seats</span>
+          <span class="fleet-feat">AC</span>
+          <span class="fleet-feat">Luggage Space</span>
+          <span class="fleet-feat">Reclining Seats</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹22 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🚗</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Compact SUV</div>
+        <div class="fleet-name">Maruti Ertiga</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">6 Seats</span>
+          <span class="fleet-feat">AC</span>
+          <span class="fleet-feat">Music System</span>
+          <span class="fleet-feat">GPS</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹15 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="fleet-card">
+      <div class="fleet-img">🚘</div>
+      <div class="fleet-body">
+        <div class="fleet-category">Business Class</div>
+        <div class="fleet-name">Toyota Camry</div>
+        <div class="fleet-features">
+          <span class="fleet-feat">4 Seats</span>
+          <span class="fleet-feat">AC</span>
+          <span class="fleet-feat">Leather Seats</span>
+          <span class="fleet-feat">WiFi</span>
+        </div>
+        <div class="fleet-footer">
+          <div class="fleet-price">₹28 <span>/km</span></div>
+          <button class="btn-fleet">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<div class="why-section" id="why">
+  <div class="why-inner">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Your Journey, <span class="accent">Our Promise</span></h2>
+    <div class="why-grid">
+      <div class="why-visual">
+        <div class="why-big-stat">
+          <div class="big-num">4.5★</div>
+          <div class="big-label">Average Customer Rating<br>across 2,000+ trips</div>
+          <div class="why-badge"><span>100%</span><small>Safe Rides</small></div>
+        </div>
+      </div>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-num">01</div>
+          <div class="why-text">
+            <h4>Verified & Professional Drivers</h4>
+        
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-num">02</div>
+          <div class="why-text">
+            <h4>Transparent Pricing — No Surprises</h4>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-num">03</div>
+          <div class="why-text">
+            <h4>24/7 Customer Support</h4>
+           </div>
+        </div>
+        <div class="why-point">
+          <div class="why-num">04</div>
+          <div class="why-text">
+            <h4>Real-Time GPS Tracking</h4>
+            <p>Track your ride live from the app. Share your trip with family for added peace of mind on every journey.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-num">05</div>
+          <div class="why-text">
+            <h4>Instant Booking Confirmation</h4>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<!-- <section id="testimonials">
+  <div class="section-label">Passenger Stories</div>
+  <h2 class="section-title">What Our <span class="accent">Riders Say</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Booked a one-way trip from Delhi to Agra. The car was spotless, driver was punctual and knowledgeable about the route. Will definitely book again for my next trip!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Rahul Sharma</div>
+          <div class="author-route">Delhi → Agra</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Used SwiftRide for my wedding convoy — 8 cars, all perfectly coordinated, beautifully decorated. Not a single glitch. My family was thoroughly impressed. Best decision!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">P</div>
+        <div>
+          <div class="author-name">Priya Mehta</div>
+          <div class="author-route">Wedding — Mumbai</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Our company uses SwiftRide for all executive travel. The billing is transparent, drivers are professional, and the Innova Crystas are always immaculate. A trusted partner."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Anil Kapoor</div>
+          <div class="author-route">Corporate Account — Pune</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="contact">
+  <h2>Ready to Hit the Road?</h2>
+  <p>Book your cab now and experience travel that's safe, comfortable, and on time. Every single time.</p>
+  <div class="cta-buttons">
+    <button class="btn-cta-dark" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Online Now</button>
+    <button class="btn-cta-outline" onclick="window.location.href='tel:+9192654 19600'">📞 +91 92654 19600</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Aai<span>Lirbai</span></span>
+      <p class="footer-desc">India's premium cab rental service for outstation trips, airport transfers, and corporate travel. Safe, reliable, and always on time.</p>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">📸</div>
+        <div class="social-btn">🐦</div>
+        <div class="social-btn">▶️</div>
+      </div>
+    </div>
+    <!-- <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Outstation Cabs</a></li>
+        <li><a href="#">Airport Transfer</a></li>
+        <li><a href="#">Corporate Travel</a></li>
+        <li><a href="#">Wedding Cars</a></li>
+        <li><a href="#">Tour Packages</a></li>
+        <li><a href="#">Hourly Rental</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Popular Routes</h5>
+      <ul>
+        <li><a href="#">Delhi → Jaipur</a></li>
+        <li><a href="#">Mumbai → Pune</a></li>
+        <li><a href="#">Bangalore → Mysore</a></li>
+        <li><a href="#">Hyderabad → Goa</a></li>
+        <li><a href="#">Chennai → Pondicherry</a></li>
+        <li><a href="#">Jaipur → Agra</a></li>
+      </ul>
+    </div> -->
+    <div class="footer-col">
+      <h5>Contact Us</h5>
+      <ul>
+        <li><a href="tel:+919876543210">+91 92654 19600</a></li>
+        <li><a href="mailto:info@swiftride.in">info@swiftride.in</a></li>
+        <li><a href="#">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 <span class="gold">Aai Lirbai</span>. All rights reserved. Made with ❤️ for travellers.</p>
+  </div>
+</footer>
+
+<!-- FLOATING PHONE -->
+<a href="tel:+919265419600" class="phone-float">
+  <span class="icon">📞</span> Call to Book
+</a>
+
+<script>
+  function setTab(el) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function handleBook() {
+    // Collect all form values
+    const formInputs = document.querySelectorAll('.form-group .form-input, .form-row .form-input');
+    const name = formInputs[0].value;
+    const phoneNumber = formInputs[1].value;
+    const from = formInputs[2].value;
+    const to = formInputs[3].value;
+    const pickupDate = formInputs[4].value;
+    const pickupTime = formInputs[5].value;
+    const carType = formInputs[6].value;
+
+    // Get the selected trip type (One Way or Round Trip)
+    const activeTab = document.querySelector('.tab-btn.active');
+    const tripType = activeTab ? activeTab.textContent.trim() : 'One Way';
+
+    // Validate required fields
+    if (!name || !phoneNumber || !from || !to || !pickupDate || !pickupTime || !carType) {
+      alert('Please fill all the required fields!');
+      return;
+    }
+
+    // Validate phone number format
+    const phoneRegex = /^[0-9]{10}$/;
+    const cleanPhoneNumber = phoneNumber.replace(/\s+/g, '');
+    if (!phoneRegex.test(cleanPhoneNumber)) {
+      alert('Please enter a valid 10-digit phone number!');
+      return;
+    }
+
+    // Create booking data object
+    const bookingData = {
+      customerName: name,
+      customerPhone: phoneNumber,
+      pickupCity: from,
+      destinationCity: to,
+      pickupDate: pickupDate,
+      pickupTime: pickupTime,
+      carType: carType,
+      tripType: tripType,
+      submittedAt: new Date().toISOString()
+    };
+
+    console.log('Booking query submitted:', bookingData);
+
+    // Send data to WhatsApp
+    sendBookingToBackend(bookingData);
+  }
+
+  function sendBookingToBackend(bookingData) {
+    // Format booking data as a message
+    const message = `
+*New Booking Request*
+
+*Customer Name:* ${bookingData.customerName}
+*Phone:* ${bookingData.customerPhone}
+*Trip Type:* ${bookingData.tripType}
+*From:* ${bookingData.pickupCity}
+*To:* ${bookingData.destinationCity}
+*Pickup Date:* ${bookingData.pickupDate}
+*Pickup Time:* ${bookingData.pickupTime}
+*Car Type:* ${bookingData.carType}
+*Submitted:* ${new Date(bookingData.submittedAt).toLocaleString()}
+    `.trim();
+
+    // Your WhatsApp business number (replace with your actual number)
+    const whatsappNumber = '919265419600'; // Format: country code + number without + or -
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Create WhatsApp link
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp
+    window.open(whatsappLink, '_blank');
+
+    // Show success message
+    alert('Booking query submitted! Opening WhatsApp to send details...');
+    
+    // Clear form after submission
+    clearBookingForm();
+  }
+
+  function clearBookingForm() {
+    document.querySelectorAll('.form-group .form-input, .form-row .form-input').forEach(input => {
+      input.value = '';
+    });
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '12px 60px';
+      nav.style.background = 'rgba(10,10,10,0.98)';
+    } else {
+      nav.style.padding = '18px 60px';
+      nav.style.background = 'rgba(10,10,10,0.92)';
+    }
+  });
+
+  // Set today as min date for booking
+  document.querySelector('input[type=date]').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
