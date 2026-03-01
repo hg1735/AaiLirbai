@@ -20,13 +20,17 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--black);
     color: var(--white);
     overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
   /* NAV */
@@ -38,6 +42,8 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(245,166,35,0.15);
     transition: padding 0.3s;
+    width: 100%;
+    box-sizing: border-box;
   }
   .logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -75,6 +81,7 @@
     align-items: center;
     overflow: hidden;
     background: var(--black);
+    width: 100%;
   }
   .hero-bg {
     position: absolute; inset: 0;
@@ -100,6 +107,7 @@
     gap: 80px;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
   }
   .hero-left {}
   .hero-badge {
@@ -149,10 +157,10 @@
   .btn-primary {
     background: var(--gold);
     color: var(--black);
-    padding: 15px 36px;
+    padding: clamp(12px, 2vw, 15px) clamp(18px, 5vw, 36px);
     border: none; border-radius: 4px;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700; font-size: 0.95rem;
+    font-weight: 700; font-size: clamp(0.75rem, 2vw, 0.95rem);
     letter-spacing: 1px;
     cursor: pointer;
     text-transform: uppercase;
@@ -168,11 +176,11 @@
   .btn-secondary {
     background: transparent;
     color: var(--white);
-    padding: 15px 36px;
+    padding: clamp(12px, 2vw, 15px) clamp(18px, 5vw, 36px);
     border: 1px solid rgba(255,255,255,0.25);
     border-radius: 4px;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500; font-size: 0.95rem;
+    font-weight: 500; font-size: clamp(0.75rem, 2vw, 0.95rem);
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -183,7 +191,7 @@
   .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
   .hero-stats {
-    display: flex; gap: 48px; margin-top: 56px;
+    display: flex; gap: 48px; margin-top: 30px;
     animation: fadeUp 0.7s 0.4s ease both;
   }
   .stat-item {}
@@ -209,7 +217,7 @@
     background: var(--card-bg);
     border: 1px solid rgba(245,166,35,0.2);
     border-radius: 16px;
-    padding: 36px;
+    padding: 10px;
     position: relative;
     overflow: visible;
   }
@@ -249,7 +257,7 @@
     background: var(--gold);
     color: var(--black);
   }
-  .form-group { margin-bottom: 16px; }
+  .form-group { margin-bottom: 12px; }
   .form-label {
     display: block;
     font-size: 0.75rem;
@@ -264,7 +272,7 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
-    padding: 13px 16px;
+    padding: 5px 16px;
     color: var(--white);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.93rem;
@@ -286,7 +294,7 @@
     color: var(--white);
     padding: 8px 12px;
   }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
   .btn-book {
     width: 100%;
     background: linear-gradient(135deg, var(--gold), var(--dark-gold));
@@ -321,6 +329,8 @@
     padding: 12px 0;
     overflow: hidden;
     white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
   }
   .ticker-inner {
     display: inline-flex;
@@ -340,7 +350,13 @@
   }
 
   /* SECTION COMMON */
-  section { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+  section { 
+    padding: 100px 60px; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    width: 100%;
+    box-sizing: border-box;
+  }
   .section-label {
     font-size: 0.75rem;
     font-weight: 700;
@@ -366,9 +382,19 @@
   }
 
   /* SERVICES */
-  .services-section { background: var(--dark); padding: 100px 0; }
-  .services-inner { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
-  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+  .services-section { 
+    background: var(--dark); 
+    padding: 20px 0 0;
+    width: 100%;
+  }
+  .services-inner { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 0 60px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
   .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -378,7 +404,7 @@
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 16px;
-    padding: 36px;
+    padding: 16px;
     position: relative;
     overflow: hidden;
     transition: border-color 0.3s, transform 0.3s;
@@ -411,7 +437,7 @@
     line-height: 1.7;
   }
   .service-card .price-tag {
-    margin-top: 28px;
+    margin-top: 15px;
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -506,13 +532,20 @@
   /* WHY US */
   .why-section {
     background: var(--dark);
-    padding: 100px 0;
+    padding: 10px 0;
+    width: 100%;
   }
-  .why-inner { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+  .why-inner { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 0 60px;
+    width: 100%;
+    box-sizing: border-box;
+  }
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: clamp(50px, 8vw, 80px);
     align-items: center;
     margin-top: 60px;
   }
@@ -523,7 +556,7 @@
     background: var(--card-bg);
     border: 1px solid rgba(245,166,35,0.2);
     border-radius: 20px;
-    padding: 60px;
+    padding: clamp(40px, 5vw, 60px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -535,45 +568,60 @@
   }
   .big-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 8rem;
+    font-size: clamp(5.5rem, 8vw, 8rem);
     color: var(--gold);
     line-height: 1;
     position: relative;
   }
   .big-label {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     color: var(--off-white);
     font-weight: 500;
     position: relative;
   }
   .why-badge {
-    position: absolute; bottom: -20px; right: -20px;
+    position: absolute; bottom: -10px; right: -7px;
     background: var(--gold);
     color: var(--black);
-    width: 100px; height: 100px;
+    width: clamp(75px, 14vw, 100px);
+    height: clamp(75px, 14vw, 100px);
     border-radius: 50%;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: clamp(2px, 1vw, 4px);
+    padding: clamp(8px, 2vw, 12px);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    line-height: 1.1;
+    line-height: 1;
     text-align: center;
   }
-  .why-badge small { font-size: 0.7rem; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  .why-points { display: flex; flex-direction: column; gap: 28px; }
-  .why-point { display: flex; gap: 20px; align-items: flex-start; }
+  .why-badge span {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    display: block;
+  }
+  .why-badge small { 
+    font-size: clamp(0.58rem, 1.5vw, 0.65rem); 
+    font-family: 'DM Sans', sans-serif; 
+    font-weight: 700; 
+    letter-spacing: 0.5px; 
+    text-transform: uppercase;
+    display: block;
+  }
+  .why-points { display: flex; flex-direction: column; gap: clamp(22px, 3vw, 28px); }
+  .why-point { display: flex; gap: clamp(16px, 2vw, 20px); align-items: flex-start; }
   .why-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 4vw, 2rem);
     color: rgba(245,166,35,0.2);
     line-height: 1;
-    min-width: 40px;
+    min-width: clamp(32px, 5vw, 40px);
   }
   .why-text h4 {
-    font-weight: 700; font-size: 1rem;
+    font-weight: 700; 
+    font-size: clamp(0.95rem, 2vw, 1rem);
     margin-bottom: 6px;
   }
   .why-text p {
-    font-size: 0.88rem;
+    font-size: clamp(0.82rem, 1.5vw, 0.88rem);
     color: var(--text-muted);
     line-height: 1.7;
   }
@@ -621,6 +669,8 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
   }
   .cta-banner::before {
     content: '';
@@ -679,6 +729,8 @@
     background: #060606;
     border-top: 1px solid rgba(255,255,255,0.06);
     padding: 60px;
+    width: 100%;
+    box-sizing: border-box;
   }
   .footer-grid {
     max-width: 1400px; margin: 0 auto;
@@ -686,6 +738,8 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 60px;
     margin-bottom: 48px;
+    width: 100%;
+    box-sizing: border-box;
   }
   .footer-brand .logo { font-size: 2.2rem; display: block; margin-bottom: 16px; }
   .footer-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; max-width: 300px; }
@@ -721,6 +775,8 @@
     padding-top: 28px;
     border-top: 1px solid rgba(255,255,255,0.06);
     display: flex; justify-content: space-between; align-items: center;
+    width: 100%;
+    box-sizing: border-box;
   }
   .footer-bottom p { font-size: 0.83rem; color: var(--text-muted); }
   .footer-bottom .gold { color: var(--gold); }
@@ -752,8 +808,8 @@
   @media (max-width: 1024px) {
     nav { padding: 16px 30px; }
     nav ul { gap: 20px; }
-    .hero-content { padding: 100px 30px 60px; gap: 40px; }
-    section { padding: 80px 30px; }
+    .hero-content { padding: 100px 30px 30px; gap: 40px; }
+    section { padding: 30px 30px; }
     .services-inner, .why-inner, .footer-grid { padding-left: 30px; padding-right: 30px; }
     .cta-banner { padding: 60px 30px; }
     footer { padding: 40px 30px; }
@@ -766,10 +822,28 @@
     .hero-content { grid-template-columns: 1fr; }
     .fleet-grid, .services-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
+    .why-inner { padding: 0 24px; }
     .form-row { grid-template-columns: 1fr; }
     .hero-stats { gap: 24px; flex-wrap: wrap; }
     .footer-grid { grid-template-columns: 1fr; }
     .cta-buttons { flex-direction: column; align-items: center; }
+  }
+  
+  @media (max-width: 480px) {
+    .why-inner { padding: 0 16px; width: 100%; }
+    .why-big-stat { padding: 30px 16px; border-radius: 10px; }
+    .why-big-stat::before { display: none; }
+    .why-badge { width: 70px; height: 70px; bottom: -8px; right: -8px; padding: 8px; }
+    .why-badge span { font-size: 1rem; }
+    .why-badge small { font-size: 0.55rem; }
+  }
+  
+  @media (max-width: 360px) {
+    .why-inner { padding: 0 12px; width: 100%; }
+    .why-big-stat { padding: 25px 12px; border-radius: 8px; }
+    .why-badge { width: 65px; height: 65px; bottom: -6px; right: -6px; padding: 6px; gap: 1px; }
+    .why-badge span { font-size: 0.95rem; }
+    .why-badge small { font-size: 0.5rem; letter-spacing: 0; }
   }
 </style>
 </head>
@@ -794,7 +868,7 @@
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge">🌟 India's Most Trusted Rental</div>
-      <p ><h1 style="float: left; width: 45%;">Ride in <span class="accent">Style &<br>Comfort</span></h1> <img src="AL-icon.jpg" alt="Italian Trulli" width="45%"  style="float: right;padding-right: 5%;">
+      <p ><h1 style="float: left; width: 45%;font-size: clamp(2rem, 10vw, 5rem);padding-left: 5%;padding-top: 4%;">Ride in <span class="accent">Style &<br>Comfort</span></h1> <img src="AL-icon.jpg" alt="Italian Trulli" width="45%"  style="float: right;padding-right: 5%;">
       </p>
       <br style="clear:both" />
       <p class="hero-sub">Premium car rental services for outstation trips, airport transfers, and corporate travel. Available 24/7 across India.</p>
